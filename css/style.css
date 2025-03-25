@@ -1,0 +1,178 @@
+@keyframes logoAnimation {
+    0% {
+      width: 25px;
+      opacity: 0;
+    }
+    100% {
+      width: 475px;
+      opacity: 1;
+    }
+  }
+  /* Stept 1:Animate the logo with keyframes.  (Here is a keyframes reference.) It should start at a width of 25px and grow to 475px.  It should also start with an opacity of 0 and end with an opacity of 1. The animation should take 5 seconds and only happen when the page is loaded. **You can complete this step later in the process - it won’t affect the larger views.  */
+
+  #logo {
+    animation: logoAnimation 5s ease-out forwards; /*causes the logo to animate in for 5 seconds*/
+    width: 25px;  /* Starting width */
+    opacity: 0;   /* Starting opacity */
+  }
+/* step 2: Edit the body element to use the Poppins font (using Google fonts) with serif as a backup.  It should also use the image “concrete_seamless.png” as a background-image with a backup color of #f1f1f1. */
+
+  body {
+    font-family: "Poppins", serif; /* use quotation marks around poppins because er str importing it*/
+    background-image: url("../images/concrete_seamless.png"); /*code to import a background image from the imags folder*/
+    background-color:  #f1f1f1;
+  } 
+  
+header{ /* uses flex to match the example provided */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-end;
+}
+.nav_links /* sets up the nav links to be displayed on the opposite side*/
+{
+    display: flex; 
+    flex-direction: column;
+}
+
+a {
+    color: blue; 
+    text-decoration: underline; /* code to set the color of the nav links and make them blue with a underline underneath*/
+  }
+
+  a:visited {
+    color: blue;  /* ensures that the color remains the same even after the link is visited*/
+    text-decoration: underline; 
+}
+.card > header{ /* this code allows us to access the first child of card in the header*/
+    background: #288088;
+    border: solid 2px #45ADAD;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    border-top-left-radius: 50px; /* curvers the border of the card at the top left so its smooth*/
+    border-top-right-radius: 50px; /* curves the border at the top right so its smooth*/
+}
+
+.card {
+    /*display: flex;*/
+    flex-basis: 450px;
+    /*flex-direction: column;*/
+    border-top-left-radius: 50px; /* curvers the border of the card at the top left so its smooth*/
+    border-top-right-radius: 50px; /* curves the border at the top right so its smooth*/
+}
+.pricing
+{
+    display:flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+.gallery img { /* this sets up each individual image*/
+    border: solid 10px #50C7C7;
+    margin: 10px;
+    width: 300px;
+}
+
+.gallery { /*organizes the entire gallery, hence using flex*/
+    display: flex
+    ;
+        flex-wrap: wrap;
+        flex-direction: row;
+        justify-content: center;
+}
+
+
+@media only screen and (min-width: 900px) { /*set for screen width of 900px or greater*/
+    header{
+        flex-direction: row;
+        justify-content: space-between;
+        
+    }
+
+    body > header:first-of-type { /*targets ONLY the first header*/
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        z-index: 1000;
+    }
+
+    body {
+        margin-top: 90px;  /* Adjust based on the height of your header */
+    }
+
+    .nav_links{
+        display: flex;      /* Change links to a vertical block layout */
+        flex-direction: row; /*mobes text to the right side of the nav*/
+        text-decoration: underline;
+    }
+    .pricing{
+        align-items: center;
+    }
+    .card{
+        display: flex;
+        flex-basis: 275px; /* keeps card at initial size of 275px*/
+        flex-wrap: wrap;
+        align-content: space-between;
+        flex-direction: column;
+        justify-items: center;
+        border-top-left-radius: 50px;/*curves the top left corner*/
+        border-top-right-radius: 50px;/*curves the rop right corner*/
+    }
+
+    a:link, a:visited {
+        color: blue; /* Set the color for both normal and visited links */
+        text-decoration: underline; /* Optional: Keeps the underline for both states */
+    }
+
+}
+
+
+/* Disable animation for users with prefers-reduced-motion set to reduce */
+@media (prefers-reduced-motion: reduce) {
+    #logo {
+        animation: none; /* Disable the animation */
+    }
+}
+
+@media print { /* sets up the printing page*/
+    body {
+        font-family: Arial, Helvetica, sans-serif; /* Ensure the font is correct */
+        background-image: none; /* Remove background image for print */
+    }
+
+    nav {
+        width: 100%;
+    }
+
+    .nav_links {
+    flex-direction: row; /*positions them to be horizontal*/
+    justify-content: space-around; /*privudes a bunch of space between them*/
+    }
+
+    .pricing {
+        align-items: flex-end;
+        flex-direction: row;
+        flex-wrap: nowrap
+    
+
+    }
+
+    .card {
+        border: solid 2px #45ADAD;
+        flex-basis: 325px; /*maintains the size of the cards*/
+    }
+
+    #gallery{
+     display: none; /*hides the gallry text */
+    }
+
+    .gallery {
+        display: none; /* Ensure gallery is hidden during print */
+    }
+
+    .card ul li:last-child::after {
+        content: "\1F44D"; /*code for the thumbs-up emoji */
+        color: yellow; /* Make the thumbs-up yellow */
+}
+}
